@@ -3,6 +3,8 @@ import AdminSidebar from "../compoenets/AdminSidebar";
 import { FaRegBell } from "react-icons/fa";
 import userImage from "../assets/images/userImage.jpg";
 import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
+import data from "../assets/data.json";
+import { BarChart } from "../compoenets/Charts";
 
 const Dashboard = () => {
   return (
@@ -47,11 +49,24 @@ const Dashboard = () => {
         <section className="graph-container">
           <div className="revenue-chart">
             <h2>Revneue & Transaction</h2>
+            <BarChart data_1={[200,444,343,556,778,455,990]}
+            data_2={[300,144,433,655,237,755,190]}
+            title_1="Revnue"
+            title_2="Transaction"
+            bgColor_1="rgb(0,115,255)"
+            bgColor_2="rgba(53, 162, 235, 0.8)"
+            />
           </div>
           <div className="dashboar-categories">
             <h2>Inventory</h2>
             <div>
-              <CategoryItem heading="Laptops" value={70} color="hsl(169, 100%,50%)" />
+              {data.categories.map((item) => (
+                <CategoryItem
+                  heading={item.heading}
+                  value={item.value}
+                  color={`hsl(${item.value * 4}, ${item.value}%,50%)`}
+                />
+              ))}
             </div>
           </div>
         </section>
@@ -113,10 +128,12 @@ const CategoryItem = ({ color, value, heading }: CategoryItemsProps) => (
   <div className="category-item">
     <h5>{heading}</h5>
     <div>
-      <div style={{
-        backgroundColor: color,
-        width: `${value}%`
-      }}></div>
+      <div
+        style={{
+          backgroundColor: color,
+          width: `${value}%`,
+        }}
+      ></div>
     </div>
     <span>{value}%</span>
   </div>
