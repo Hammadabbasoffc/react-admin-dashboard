@@ -38,9 +38,22 @@ const Dashboard = () => {
           <WidgetItem
             percent={30}
             value={23000}
+            amount={true}
             heading="Products"
             color="rgb(76 0 255)"
           />
+        </section>
+
+        <section className="graph-container">
+          <div className="revenue-chart">
+            <h2>Revneue & Transaction</h2>
+          </div>
+          <div className="dashboar-categories">
+            <h2>Inventory</h2>
+            <div>
+              <CategoryItem heading="Laptops" value={70} color="hsl(169, 100%,50%)" />
+            </div>
+          </div>
         </section>
       </main>
     </div>
@@ -88,6 +101,25 @@ const WidgetItem = ({
       <span style={{ color: `${color}` }}>{percent}%</span>
     </div>
   </article>
+);
+
+interface CategoryItemsProps {
+  color: string;
+  value: number;
+  heading: string;
+}
+
+const CategoryItem = ({ color, value, heading }: CategoryItemsProps) => (
+  <div className="category-item">
+    <h5>{heading}</h5>
+    <div>
+      <div style={{
+        backgroundColor: color,
+        width: `${value}%`
+      }}></div>
+    </div>
+    <span>{value}%</span>
+  </div>
 );
 
 export default Dashboard;
