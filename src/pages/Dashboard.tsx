@@ -4,7 +4,9 @@ import { FaRegBell } from "react-icons/fa";
 import userImage from "../assets/images/userImage.jpg";
 import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
 import data from "../assets/data.json";
-import { BarChart } from "../compoenets/Charts";
+import { BarChart, DoughnutChart } from "../compoenets/Charts";
+import { BiMaleFemale } from "react-icons/bi";
+import DashboardTable from "../compoenets/DashboardTable";
 
 const Dashboard = () => {
   return (
@@ -62,6 +64,7 @@ const Dashboard = () => {
             <div>
               {data.categories.map((item) => (
                 <CategoryItem
+                key={item.heading}
                   heading={item.heading}
                   value={item.value}
                   color={`hsl(${item.value * 4}, ${item.value}%,50%)`}
@@ -69,6 +72,19 @@ const Dashboard = () => {
               ))}
             </div>
           </div>
+        </section>
+
+        <section className="transaction-container">
+          <div className="gender-chat">
+            <h2>Gender Ratio</h2>
+            <DoughnutChart labels={["Female", "Male"]} 
+            data={[12, 19]}
+            backgroundColor={["hsl(340,82%,56%)", "rgba(53,162,235,0.8)"]}
+            cutout={90}
+            />
+            <p><BiMaleFemale/></p>
+          </div>
+          <DashboardTable data={data.transaction} />
         </section>
       </main>
     </div>
