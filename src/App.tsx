@@ -13,6 +13,9 @@ const TransactionManagement = lazy(() => import("./pages/management/TransactionM
 const BarCharts = lazy(()=>import("./pages/charts/BarCharts"))
 const PieCharts = lazy(()=>import("./pages/charts/PieCharts"))
 const LineChats = lazy(()=>import("./pages/charts/LineChats"))
+const Stopwatch = lazy(()=>import("./pages/apps/Stopwatch"))
+const Toss = lazy(()=>import("./pages/apps/Toss"))
+const Coupon = lazy(()=>import("./pages/apps/Coupon"))
 
 
 
@@ -31,6 +34,11 @@ const App = () => {
           <Route path="/admin/chart/pie" element={<PieCharts/>} />
           <Route path="/admin/chart/line" element={<LineChats/>} />
 
+          {/* Apps */}
+
+          <Route path="/admin/app/stopwatch" element={<Stopwatch/>} />
+          <Route path="/admin/app/toss" element={<Toss/>}/> 
+          <Route path="/admin/app/coupon" element={<Coupon/>}/> 
 
           {/* Management */}
           <Route path="/admin/product/new" element={<NewProducts/>} />
